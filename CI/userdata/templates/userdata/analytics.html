@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>User Data</title>
+	<head>
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
+      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+      <!--Import materialize.css-->
+      <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+
+      <!--Let browser know website is optimized for mobile-->
+      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </head>
+</head>
+<style type="text/css">
+	.ft{
+		font-size:10px;
+	}
+	.pd{
+		padding-left:80px;
+	}
+	.pd1{
+		padding-left:60px;
+	}
+	.brd{
+		border-width:1px;  
+    	border-style:solid;
+	}
+	.pred{
+		padding-bottom:10px;
+	}
+</style>
+<body>
+<header>
+	<nav>
+    <div class="nav-wrapper black">
+      <a href="#" class="brand-logo center">Customer Data Analytics</a>
+    </div>
+  </nav>
+</header>
+<div class="container" style="width:1200px;height:750px;">
+{% if user_data %}
+<div class="row">
+	<form class="col s12" method="POST" name="state_list" id="state_list">{% csrf_token %}
+		<div class="input-field col s3"><h6 class="sidenav-heading">Select Customer:</h6></div>
+		<div class="input-field col s6">
+			<select name="customer_name" class="select-wrapper validate" required>
+				<option value="">---Select from dropdown---</option>
+				{% for user in user_data %}
+					{% for key,value in user.items %}
+						{% if key == 'customer_name'%}
+							<option value="{{value}}">{{value}}</option>
+						{% endif %}
+					{% endfor %}
+				{% endfor %}
+			</select>
+		</div>
+		<div class="input-field col s3">
+		<button class="waves-effect btn save-button" type="submit" name="action">Fetch</button>
+		</div>
+	</form>
+</div>
+{% endif %}
+{% if account_risk_data %}
+<div class="row">
+<a class="btn-floating btn-large waves-effect waves-light red right" href="/userdata" title="Search Another Customer"><i class="material-icons">search</i></a>
+</div>
+<div class="row">
+    <div class="col s12 m3">
+      <div class="card blue-grey darken-1">
+        <div class="card-content white-text">
+        	<p class="center">{{child_account_sum}}</p>
+          <span class="center ft pd">CHILD ACCOUNTS</span>
+        </div>
+      </div>
+    </div>
+    <div class="col s12 m3">
+      <div class="card blue-grey darken-1">
+        <div class="card-content white-text">
+          <p class="center">{{stage_won}}</p>
+           <span class="center ft pd">ACCOUNTS WON</span>
+        </div>
+      </div>
+    </div>
+    <div class="col s12 m3">
+      <div class="card blue-grey darken-1">
+        <div class="card-content white-text">
+          <p class="center">{{high_pot_account}}</p>
+           <span class="center ft pd1">HIGH POTENTIAL ACCOUNTS</span>
+        </div>
+      </div>
+    </div>
+    <div class="col s12 m3">
+      <div class="card blue-grey darken-1">
+        <div class="card-content white-text">
+          <p class="center">{{high_pipe_account}}</p>
+           <span class="center ft pd1">HIGH PIPELINE ACCOUNTS</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <p style="padding-left:50px;">*All the account references are for child accounts</p>
+  <div class="col s12 m7">
+   
+    <div class="card horizontal">
+      <div class="card-stacked">
+        <div class="card-content brown white-text">
+          <p class="pred">Account Name : {{account_risk_data.account_name}} <span class="new badge green" data-badge-caption="High Pipeline"></span></p>
+          <p>End Customer : {{account_risk_data.customer_name}} <span class="new badge green" data-badge-caption="High Potential"></span></p>
+        </div>
+        <div class="card-action">
+          <div class="row">
+      	<div class="col s6 m6 center"><strong>Account Risk (s)</strong></div>
+    		<div class="col s6 m6">
+    			<ul>
+           			{% for ris in risk %}
+           				<li>* {{ris}}</li>
+           			{% endfor %}
+           		</ul>
+   			 </div>
+      	</div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endif %} 
+</div>
+<footer class="page-footer black">
+          <div class="container">
+          </div>
+          <div class="footer-copyright">
+            <div class="container">
+            <a class="grey-text text-lighten-4 right" href="#!">© 2018 Rohit Assignment App</a>
+            </div>
+          </div>
+        </footer>
+<script type="text/javascript" src="js/materialize.min.js"></script>
+<script type="text/javascript">
+	M.AutoInit();
+</script>
+</body>
+</html>
