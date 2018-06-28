@@ -1,0 +1,41 @@
+{% extends "userdata/index.html" %}
+{% block content %}
+<h5 class="center">Steps to setup the project</h5>
+<div class="row">
+<div class="col s6">
+<table>
+        <thead>
+          <tr>
+              <th>Localhost</th>
+          </tr>
+        </thead>
+        <tbody>
+            <tr><td>1.Create virtualenv</td></tr>
+            <tr><td>2.In cmd> virtualenv -p python3.6 < extracted Customer_analytics > </td></tr>
+            <tr><td>3.cmd> cd Customer_analytics</td></tr>
+            <tr><td>4.cmd> scripts/activate</td></tr>
+            <tr><td>5.cmd> pip install -r requirements.txt</td></tr>
+            <tr><td>6.cmd> python manage.py runserver</td></tr>
+            <tr><td>7.Go to http://127.0.0.1:8000/userapp in browser</td></tr>
+        </tbody>
+      </table>
+</div>
+<div class="col s6">
+<table>
+        <thead>
+          <tr>
+              <th>Heroku</th>
+          </tr>
+        </thead>
+        <tbody>
+            <tr><td>1.Go to https://dashboard.heroku.com/apps > New > Create new app</td></tr>
+            <tr><td>2.Enter <strong> app_name </strong> > create app </td></tr>
+            <tr><td>3.Login to Your Github account > Add New repository > Give repository name > add downloaded folder to newly created repository</td></tr>
+            <tr><td>4.Go to Deployment method > Github > Connect to Github > Enter Repo Name > Search > Connect </td></tr>
+            <tr><td>5.Go to Manual deploy > Deploy Branch / Automatic deploys can be enabled</td></tr>
+            <tr><td>6.Go to <strong> app_name</strong>.herokuapp.com/userapp </td></tr>
+        </tbody>
+      </table>
+</div>
+</div>
+{% endblock %}
