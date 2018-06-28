@@ -5,7 +5,7 @@ from .models import Account, Account_Risk
 from .mock import Account_risk, account
 from django.db.models import Sum
 
-def index(request):
+def analytics(request):
 	template = loader.get_template('userdata/analytics.html')
 	if request.method == 'GET':
 		context = {
@@ -30,7 +30,17 @@ def index(request):
 				'child_account_sum':child_account_sum
 			  }
 	return HttpResponse(template.render(context, request))
-    
+
+def index(request):
+	context ={}
+	template = loader.get_template("userdata/index.html")
+	return HttpResponse(template.render(context, request))
+
+def help(request):
+	context ={}
+	template = loader.get_template("userdata/help.html")
+	return HttpResponse(template.render(context, request))
+
 def update_table(dtype,request):
 	try:
 		if dtype == 'Account_risk':

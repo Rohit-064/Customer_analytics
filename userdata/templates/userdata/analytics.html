@@ -1,45 +1,5 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title>User Data</title>
-	<head>
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
-      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-      <!--Import materialize.css-->
-      <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
-
-      <!--Let browser know website is optimized for mobile-->
-      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    </head>
-</head>
-<style type="text/css">
-	.ft{
-		font-size:10px;
-	}
-	.pd{
-		padding-left:80px;
-	}
-	.pd1{
-		padding-left:60px;
-	}
-	.brd{
-		border-width:1px;  
-    	border-style:solid;
-	}
-	.pred{
-		padding-bottom:10px;
-	}
-</style>
-<body>
-<header>
-	<nav>
-    <div class="nav-wrapper black">
-      <a href="#" class="brand-logo center">Customer Data Analytics</a>
-    </div>
-  </nav>
-</header>
-<div class="container" style="width:1200px;height:750px;">
+{% extends "userdata/index.html" %}
+{% block content %}
 {% if user_data %}
 <div class="row">
 	<form class="col s12" method="POST" name="state_list" id="state_list">{% csrf_token %}
@@ -64,7 +24,7 @@
 {% endif %}
 {% if account_risk_data %}
 <div class="row">
-<a class="btn-floating btn-large waves-effect waves-light red right" href="/userdata" title="Search Another Customer"><i class="material-icons">search</i></a>
+<a class="btn-floating btn-large waves-effect waves-light red right" href="/userapp/list" title="Search Another Customer"><i class="material-icons">search</i></a>
 </div>
 <div class="row">
     <div class="col s12 m3">
@@ -124,20 +84,5 @@
       </div>
     </div>
   </div>
-{% endif %} 
-</div>
-<footer class="page-footer black">
-          <div class="container">
-          </div>
-          <div class="footer-copyright">
-            <div class="container">
-            <a class="grey-text text-lighten-4 right" href="#!">© 2018 Rohit Assignment App</a>
-            </div>
-          </div>
-        </footer>
-<script type="text/javascript" src="js/materialize.min.js"></script>
-<script type="text/javascript">
-	M.AutoInit();
-</script>
-</body>
-</html>
+{% endif %}
+{% endblock %}
